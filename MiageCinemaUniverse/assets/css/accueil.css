@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --couleur-primaire: #0a0a0a;
+    --couleur-secondaire: #1e1e1e;
+    --couleur-tertiaire: #e50914;
+    --couleur-texte: #ffffff;
+    --couleur-fond-transparent: rgba(10, 10, 10, 0.8);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-texte);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Film en vedette */
+.film-vedette {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.vedette-overlay {
+    background: linear-gradient(to right, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.4) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.vedette-info {
+    max-width: 600px;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: fadeInRight 1s ease forwards;
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.vedette-info h2 {
+    font-size: 2rem;
+    color: var(--couleur-tertiaire);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+.vedette-info h3 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--couleur-secondaire), var(--couleur-tertiaire));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.vedette-info p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Films à l'affiche */
+.films-affiche {
+    padding: 80px 5%;
+    background-color: var(--couleur-fond-transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.films-affiche::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, var(--couleur-primaire), transparent);
+    z-index: 1;
+}
+
+.films-affiche h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--couleur-tertiaire);
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: var(--couleur-tertiaire);
+    border-radius: 4px;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: 300px;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.1);
+    transition: var(--transition);
+}
+
+.carousel-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(229, 9, 20, 0.2);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.1);
+}
+
+.film-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0) 100%);
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover .film-info {
+    transform: translateY(0);
+}
+
+.film-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.film-info p.genre {
+    font-size: 0.9rem;
+    color: var(--couleur-tertiaire);
+    margin-bottom: 1rem;
+}
+
+/* Actualités */
+.actualites {
+    padding: 80px 5%;
+    background: linear-gradient(45deg, var(--couleur-primaire), var(--couleur-secondaire));
+    position: relative;
+}
+
+.actualites::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, var(--couleur-primaire), transparent);
+    z-index: 1;
+}
+
+.actualites h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--couleur-tertiaire);
+}
+
+.actualites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.actualite-card {
+    background-color: var(--couleur-fond-transparent);
+    border-radius: 15px;
+    padding: 30px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.actualite-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(
+            135deg,
+            transparent 0%,
+            transparent 50%,
+            rgba(229, 9, 20, 0.1) 50%,
+            rgba(229, 9, 20, 0.1) 100%
+    );
+    transition: transform 0.5s ease;
+}
+
+.actualite-card:hover::before {
+    transform: translate(50%, 50%);
+}
+
+.actualite-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.2);
+}
+
+.actualite-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--couleur-tertiaire);
+}
+
+.actualite-card p {
+    margin-bottom: 1.5rem;
+}
+
+/* Mission cinéma */
+.mission-cinema {
+    text-align: center;
+    padding: 100px 5%;
+    background: linear-gradient(45deg, var(--couleur-primaire), var(--couleur-secondaire));
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-cinema::before,
+.mission-cinema::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(229, 9, 20, 0.1);
+    border-radius: 50%;
+}
+
+.mission-cinema::before {
+    top: -100px;
+    left: -100px;
+}
+
+.mission-cinema::after {
+    bottom: -100px;
+    right: -100px;
+}
+
+.mission-cinema h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    color: var(--couleur-tertiaire);
+}
+
+.mission-cinema h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: var(--couleur-tertiaire);
+}
+
+.mission-cinema p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles de boutons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+    );
+    transition: all 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background-color: var(--couleur-tertiaire);
+    color: var(--couleur-texte);
+    box-shadow: 0 4px 6px rgba(229, 9, 20, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #ff0a16;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 10, 22, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--couleur-tertiaire);
+    border: 2px solid var(--couleur-tertiaire);
+}
+
+.btn-secondary:hover {
+    background-color: var(--couleur-tertiaire);
+    color: var(--couleur-texte);
+}
+
+.btn-tertiary {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-texte);
+}
+
+.btn-tertiary:hover {
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 8px rgba(46, 46, 46, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .vedette-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .vedette-info h3 {
+        font-size: 2.5rem;
+    }
+
+    .carousel-item {
+        width: 250px;
+    }
+
+    .actualites-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-cinema h2 {
+        font-size: 2.5rem;
+    }
+
+    .mission-cinema p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vedette-info h3 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.btn-primary {
+    animation: pulse 2s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.actualite-card {
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.mission-cinema {
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+}
+

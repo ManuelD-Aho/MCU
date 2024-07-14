@@ -1,0 +1,449 @@
+:root {
+    --primary-color: #0a0a0a;
+    --secondary-color: #ff4500;
+    --tertiary-color: #ffffff;
+    --text-color: #ffffff;
+    --seat-available-left: #3F51B5;
+    --seat-available-middle: #4CAF50;
+    --seat-available-right: #3F51B5;
+    --seat-selected: #FFC107;
+    --seat-unavailable: #F44336;
+    --background-transparent: rgba(10, 10, 10, 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.conteneur-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.titre-animation {
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--secondary-color), 0 0 20px var(--secondary-color);
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--secondary-color), 0 0 40px var(--secondary-color);
+    }
+}
+
+.reservation-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.info-film {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--background-transparent);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-film:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+}
+
+.affiche-film {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.affiche-film:hover {
+    transform: scale(1.05);
+}
+
+.details-film p {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.details-film p:hover {
+    background-color: rgba(255, 69, 0, 0.2);
+    transform: translateX(5px);
+}
+
+.formulaire-reservation {
+    flex: 2;
+    min-width: 300px;
+}
+
+.salle-cinema {
+    background-color: var(--background-transparent);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.salle-cinema::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,69,0,0.1) 0%, rgba(10,10,10,0) 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ecran {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    animation: screenPulse 3s infinite;
+}
+
+@keyframes screenPulse {
+    0% {
+        box-shadow: 0 0 5px var(--secondary-color);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--secondary-color);
+    }
+}
+
+.ecran::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(30deg);
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    from {
+        transform: translateX(-100%) rotate(30deg);
+    }
+    to {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+.sieges-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    perspective: 800px;
+}
+
+.rangee {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    transform-style: preserve-3d;
+
+}
+
+.section-sieges {
+    display: flex;
+    gap: 5px;
+}
+
+.siege {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    perspective: 100px;
+}
+
+.siege input {
+    display: none;
+}
+
+.siege-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg);
+}
+
+.siege-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+}
+
+.siege.gauche .siege-icon {
+    background-color: var(--seat-available-left);
+}
+
+.siege.milieu .siege-icon {
+    background-color: var(--seat-available-middle);
+}
+
+.siege.droite .siege-icon {
+    background-color: var(--seat-available-right);
+}
+
+.siege input:checked + .siege-icon {
+    background-color: var(--seat-selected);
+    transform: rotateX(-30deg) scale(1.1);
+    box-shadow: 0 5px 10px rgba(255, 193, 7, 0.5);
+}
+
+.siege-info {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--background-transparent);
+    color: var(--text-color);
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.siege:hover .siege-info {
+    visibility: visible;
+    opacity: 1;
+    bottom: 120%;
+}
+
+.couloir {
+    width: 20px;
+}
+
+.btn-reserver {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 69, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0);
+    }
+}
+
+.btn-reserver::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 80%);
+    transform: scale(0);
+    transition: transform 0.6s ease-out;
+}
+
+.btn-reserver:hover::before {
+    transform: scale(1);
+}
+
+.btn-reserver:hover {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(255, 69, 0, 0.4);
+}
+
+@keyframes seatAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotateX(-90deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateX(-20deg);
+    }
+}
+
+.siege {
+    animation: seatAppear 0.5s ease-out backwards;
+}
+
+.rangee:nth-child(odd) .siege {
+    animation-delay: calc(var(--delay, 0) * 0.05s);
+}
+
+.rangee:nth-child(even) .siege {
+    animation-delay: calc(var(--delay, 0) * 0.05s + 0.1s);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1) rotateX(-20deg);
+    }
+    50% {
+        transform: scale(1.05) rotateX(-25deg);
+    }
+    100% {
+        transform: scale(1) rotateX(-20deg);
+    }
+}
+
+.siege:not(:has(input:checked)):hover .siege-icon {
+    animation: pulse 0.6s infinite;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .reservation-layout {
+        flex-direction: column;
+    }
+
+    .info-film, .formulaire-reservation {
+        width: 100%;
+    }
+
+    .siege {
+        width: 20px;
+        height: 20px;
+    }
+
+    .titre-animation {
+        font-size: 2em;
+    }
+
+    .couloir {
+        width: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .siege {
+        width: 16px;
+        height: 16px;
+    }
+
+    .titre-animation {
+        font-size: 1.8em;
+    }
+
+    .info-film, .salle-cinema {
+        padding: 10px;
+    }
+
+    .siege-info {
+        font-size: 0.7em;
+    }
+
+    .details-film p {
+        font-size: 0.9em;
+    }
+
+    .couloir {
+        width: 15px;
+    }
+}
+

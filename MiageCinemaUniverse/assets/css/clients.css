@@ -1,0 +1,156 @@
+/* clients.css - Style unique */
+
+:root {
+    --couleur-primaire: #1a1a1a;
+    --couleur-secondaire: #0a0a0a;
+    --couleur-accent: #ff0000;
+    --couleur-texte: #f0f0f0;
+    --couleur-fond: #000000;
+}
+
+body {
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🕵️</text></svg>');
+    background-repeat: repeat;
+    background-size: 50px 50px;
+    background-blend-mode: soft-light;
+}
+
+.conteneur-principal {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--couleur-accent);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.titre-page {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--couleur-accent);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
+}
+
+.section-profil, .section-reservations {
+    background-color: var(--couleur-secondaire);
+    border: 1px solid var(--couleur-accent);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-profil::before, .section-reservations::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, var(--couleur-accent) 60deg, transparent 120deg);
+    animation: rotation 10s linear infinite;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+@keyframes rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.champ-formulaire input {
+    background-color: var(--couleur-secondaire);
+    border: none;
+    border-bottom: 2px solid var(--couleur-accent);
+    color: var(--couleur-texte);
+    padding: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.champ-formulaire input:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--couleur-accent);
+}
+
+.btn-modification {
+    background-color: var(--couleur-accent);
+    color: var(--couleur-texte);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+}
+
+.btn-modification:hover {
+    background-color: var(--couleur-texte);
+    color: var(--couleur-accent);
+    transform: scale(1.05);
+}
+
+.liste-reservations {
+    list-style-type: none;
+    padding: 0;
+}
+
+.reservation-item {
+    background-color: var(--couleur-primaire);
+    border-left: 5px solid var(--couleur-accent);
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.reservation-item:hover {
+    transform: translateX(10px);
+    box-shadow: -5px 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.statut-payée, .statut-en_attente {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.statut-payée {
+    background-color: #00ff00;
+    color: var(--couleur-secondaire);
+}
+
+.statut-en_attente {
+    background-color: #ffff00;
+    color: var(--couleur-secondaire);
+}
+
+@media screen and (max-width: 768px) {
+    .conteneur-principal {
+        padding: 10px;
+    }
+
+    .titre-page {
+        font-size: 2rem;
+    }
+
+    .btn-modification {
+        width: 100%;
+    }
+}
+

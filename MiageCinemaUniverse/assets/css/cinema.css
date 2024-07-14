@@ -1,0 +1,412 @@
+/* Base et réinitialisation */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Thème sombre */
+.theme-sombre {
+    background-color: #222;
+    color: #f4f4f4;
+}
+
+/* Layout responsive */
+.conteneur {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typographie responsive */
+h1, h2, h3 {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+/* Header et Navigation */
+.header-principal {
+    background-color: #1a1a1a;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navigation-principale ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.navigation-principale li {
+    margin: 0 15px;
+}
+
+.navigation-principale a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navigation-principale a:hover,
+.navigation-principale a.actif {
+    color: #ffd700;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 600px) {
+    .navigation-principale ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation-principale li {
+        margin: 10px 0;
+    }
+}
+
+/* Section Héro */
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.titre-principal {
+    animation: fadeInDown 1s ease-out;
+}
+
+.sous-titre {
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sections générales */
+section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.theme-sombre section {
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+}
+
+section:hover {
+    transform: translateY(-5px);
+}
+
+/* Grilles responsives */
+.experience-grid,
+.service-grid,
+.temoignage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.experience-item,
+.service-item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
+}
+
+.theme-sombre .experience-item,
+.theme-sombre .service-item {
+    background-color: #444;
+}
+
+.experience-item:hover,
+.service-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Listes */
+ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+}
+
+/* Témoignages */
+blockquote {
+    font-style: italic;
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-left: 5px solid #1a1a1a;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1rem;
+}
+
+.theme-sombre blockquote {
+    background-color: #2c2c2c;
+    border-left-color: #1a1a1a;
+}
+
+/* Footer */
+.footer-principal {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.navigation-footer ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.navigation-footer li {
+    margin: 0 10px;
+}
+
+.navigation-footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navigation-footer a:hover {
+    color: white;
+}
+
+/* Animations de scroll */
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-animation.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Boutons */
+.bouton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.bouton:hover {
+    background-color: #1a1a1a;
+}
+
+/* Media queries pour différentes tailles d'écran */
+@media (max-width: 1024px) {
+    .conteneur {
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 1.5rem;
+    }
+
+    .experience-grid,
+    .service-grid,
+    .temoignage-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 2rem 0;
+    }
+
+    section {
+        padding: 1rem;
+    }
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Styles d'impression */
+@media print {
+    .header-principal,
+    .footer-principal {
+        display: none;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000;
+        background-color: #fff;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .hero {
+        background: none;
+        color: #000;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}
+
+/* Animations supplémentaires */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+/* Effets de survol améliorés */
+.experience-item h3,
+.service-item h3 {
+    transition: color 0.3s ease;
+}
+
+.experience-item:hover h3,
+.service-item:hover h3 {
+    color: #007bff;
+}
+
+/* Styles pour les formulaires */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Styles pour les tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Flexbox pour le layout */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.flex-item {
+    flex: 1 1 300px;
+    margin: 10px;
+}
+

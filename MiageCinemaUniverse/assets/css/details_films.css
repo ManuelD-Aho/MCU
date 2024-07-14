@@ -1,0 +1,350 @@
+:root {
+    --primary-color: #0a0a0a;
+    --secondary-color: #ff4500;
+    --tertiary-color: #ffffff;
+    --text-color: #ffffff;
+    --background-transparent: rgba(10, 10, 10, 0.8);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0.3;
+    transition: opacity 0.5s ease, z-index 0.5s step-end;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+.video-background.video-playing {
+    opacity: 1;
+    z-index: 100;
+    transition: opacity 0.5s ease, z-index 0s step-start;
+}
+
+.play-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.play-button::before {
+    content: '\25B6';
+    font-size: 24px;
+    color: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.play-button.playing::before {
+    content: '\275A\275A';
+    font-size: 20px;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    background-color: var(--tertiary-color);
+}
+
+.play-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.play-button:active::after {
+    width: 150%;
+    height: 150%;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.video-playing main {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+.animated-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animated-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.film-details {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.film-poster {
+    flex: 0 0 300px;
+    perspective: 1000px;
+}
+
+.film-poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+}
+
+.film-poster:hover img {
+    transform: rotateY(10deg) scale(1.05);
+}
+
+.film-info {
+    flex: 1;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.film-info p {
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.film-info p:hover {
+    transform: translateX(5px);
+}
+
+.film-info strong {
+    color: var(--secondary-color);
+}
+
+.animated-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animated-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.synopsis, .description {
+    background-color: var(--background-transparent);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.synopsis:hover, .description:hover {
+    background-color: rgba(255, 69, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.horaires {
+    background-color: var(--background-transparent);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.horaires h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.jour-horaires {
+    margin-bottom: 30px;
+}
+
+.jour-horaires h3 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: var(--tertiary-color);
+}
+
+.jour-horaires ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.jour-horaires li {
+    background-color: var(--primary-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.jour-horaires li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.jour-horaires li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            transparent 100%
+    );
+    transition: left 0.5s ease;
+}
+
+.jour-horaires li:hover::after {
+    left: 100%;
+}
+
+.btn-reserver {
+    margin-left: 15px;
+    padding: 5px 10px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-reserver:hover {
+    background-color: var(--tertiary-color);
+    transform: scale(1.05);
+}
+
+@keyframes sparkle {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.film-info strong, .horaires h2, h1 {
+    animation: sparkle 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .film-details {
+        flex-direction: column;
+    }
+
+    .film-poster {
+        flex: 0 0 auto;
+        max-width: 250px;
+        margin: 0 auto 30px;
+    }
+
+    .horaires ul {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .horaires {
+        padding: 20px;
+    }
+
+    .jour-horaires li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-reserver {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .play-button {
+        width: 50px;
+        height: 50px;
+    }
+
+    .play-button::before {
+        font-size: 20px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body {
+    animation: fadeIn 1s ease-out;
+}
+

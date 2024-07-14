@@ -1,0 +1,865 @@
+/* gestion.css */
+
+:root {
+    --couleur-primaire: #0a0a0a;
+    --couleur-secondaire: #1e1e1e;
+    --couleur-tertiaire: #e50914;
+    --couleur-texte: #ffffff;
+    --couleur-fond-transparent: rgba(10, 10, 10, 0.8);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-primaire);
+    transition: var(--transition);
+}
+
+.conteneur-admin {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Barre latérale */
+.barre-laterale {
+    width: 250px;
+    background-color: var(--couleur-secondaire);
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.barre-laterale h2 {
+    color: var(--couleur-tertiaire);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.barre-laterale nav ul {
+    list-style-type: none;
+}
+
+.barre-laterale nav ul li {
+    margin-bottom: 1rem;
+}
+
+.barre-laterale nav ul li a {
+    color: var(--couleur-texte);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transition);
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.barre-laterale nav ul li a:hover,
+.barre-laterale nav ul li a.actif {
+    background-color: var(--couleur-tertiaire);
+    transform: translateX(10px);
+}
+
+/* Contenu principal */
+.contenu-principal {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--couleur-tertiaire);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Boutons */
+.bouton-action,
+.bouton-retour,
+.bouton-modifier,
+.bouton-supprimer,
+.bouton-ajouter,
+.bouton-theme {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-tertiaire);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.bouton-action:hover,
+.bouton-retour:hover,
+.bouton-modifier:hover,
+.bouton-supprimer:hover,
+.bouton-ajouter:hover,
+.bouton-theme:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+.bouton-action:active,
+.bouton-retour:active,
+.bouton-modifier:active,
+.bouton-supprimer:active,
+.bouton-ajouter:active,
+.bouton-theme:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(229, 9, 20, 0.3);
+}
+
+.bouton-action::after,
+.bouton-retour::after,
+.bouton-modifier::after,
+.bouton-supprimer::after,
+.bouton-ajouter::after,
+.bouton-theme::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 255, 255, 0.1) 25%,
+            transparent 50%
+    );
+    transform: rotate(45deg);
+    transition: var(--transition);
+}
+
+.bouton-action:hover::after,
+.bouton-retour:hover::after,
+.bouton-modifier:hover::after,
+.bouton-supprimer:hover::after,
+.bouton-ajouter:hover::after,
+.bouton-theme:hover::after {
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+.bouton-retour {
+    background-color: #4CAF50;
+}
+
+.bouton-modifier {
+    background-color: #FFA500;
+}
+
+.bouton-supprimer {
+    background-color: #FF4136;
+}
+
+.bouton-ajouter {
+    background-color: #FF4136;
+}
+
+.bouton-theme {
+    background-color: #9b59b6;
+}
+
+/* Formulaires */
+.formulaire-admin {
+    background-color: var(--couleur-secondaire);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.champ-formulaire {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--couleur-texte);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--couleur-texte);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--couleur-tertiaire);
+    box-shadow: 0 0 5px rgba(229, 9, 20, 0.5);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Tableaux */
+.table-gestion {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-gestion th,
+.table-gestion td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-gestion th {
+    background-color: var(--couleur-tertiaire);
+    color: var(--couleur-texte);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table-gestion tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-gestion tr:hover {
+    background-color: rgba(229, 9, 20, 0.1);
+    transition: var(--transition);
+}
+
+/* Animations */
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.apparition {
+    animation: apparition 0.5s ease forwards;
+}
+
+@keyframes pulsation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulsation {
+    animation: pulsation 2s infinite;
+}
+
+/* Messages d'alerte */
+.alerte {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alerte-succes {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.alerte-erreur {
+    background-color: rgba(255, 65, 54, 0.2);
+    color: #FF4136;
+}
+
+/* Effets de survol */
+.effet-survol {
+    transition: var(--transition);
+}
+
+.effet-survol:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles spécifiques pour les sections de gestion */
+.section-gestion {
+    margin-bottom: 3rem;
+}
+
+.section-gestion h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--couleur-tertiaire);
+    border-bottom: 2px solid var(--couleur-tertiaire);
+    padding-bottom: 0.5rem;
+}
+
+/* Styles pour les éléments de film */
+.element-film {
+    background-color: var(--couleur-secondaire);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.element-film:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.titre-film {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--couleur-tertiaire);
+}
+
+.info-film {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.info-film span {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.description-film {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.actions-film {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* Styles pour les éléments d'horaire */
+.element-horaire {
+    background-color: var(--couleur-secondaire);
+    border-left: 5px solid var(--couleur-tertiaire);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.element-horaire:hover {
+    background-color: rgba(229, 9, 20, 0.1);
+    transform: translateX(5px);
+}
+
+.film-horaire {
+    font-weight: bold;
+    color: var(--couleur-tertiaire);
+}
+
+.details-horaire {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Styles pour les éléments client */
+.element-client {
+    background-color: var(--couleur-secondaire);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.element-client:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.info-client {
+    flex: 1;
+}
+
+.nom-client {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--couleur-tertiaire);
+}
+
+.email-client {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+.actions-client {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Styles pour les actualités */
+.element-actualite {
+    background-color: var(--couleur-secondaire);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.element-actualite:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.titre-actualite {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--couleur-tertiaire);
+}
+
+.date-actualite {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.contenu-actualite {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.actions-actualite {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* Styles pour les images */
+.image-apercu {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-apercu:hover {
+    transform: scale(1.05);
+}
+
+/* Styles pour la pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.lien-page {
+    padding: 0.5rem 1rem;
+    background-color: var(--couleur-tertiaire);
+    color: var(--couleur-texte);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.lien-page:hover {
+    background-color: #c4070f;
+}
+
+.page-active {
+    background-color: #c4070f;
+}
+
+/* Styles pour les statistiques */
+.section-statistiques {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.carte-statistique {
+    background-color: var(--couleur-secondaire);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.carte-statistique:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.titre-statistique {
+    font-size: 1.2rem;
+    color: var(--couleur-tertiaire);
+    margin-bottom: 0.5rem;
+}
+
+.valeur-statistique {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--couleur-texte);
+}
+
+/* Styles pour les graphiques */
+.conteneur-graphique {
+    background-color: var(--couleur-secondaire);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour les commentaires */
+.section-commentaires {
+    margin-top: 2rem;
+}
+
+.commentaire {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.auteur-commentaire {
+    font-weight: bold;
+    color: var(--couleur-tertiaire);
+}
+
+.date-commentaire {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contenu-commentaire {
+    margin-top: 0.5rem;
+}
+
+/* Styles pour les étoiles de notation */
+.notation-etoiles {
+    font-size: 1.5rem;
+    color: #FFD700;
+}
+
+.etoile {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.etoile:hover,
+.etoile.active {
+    color: #FFA500;
+}
+
+/* Styles pour le mode cinéma */
+.mode-cinema {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.mode-cinema.actif {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contenu-cinema {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.fermer-cinema {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--couleur-texte);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Animation de fondu */
+@keyframes fondu {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fondu {
+    animation: fondu 0.5s ease-in-out;
+}
+
+/* Animation de glissement */
+@keyframes glissement {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.glissement {
+    animation: glissement 0.5s ease-in-out;
+}
+
+/* Animation de rebond */
+@keyframes rebond {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-30px); }
+    60% { transform: translateY(-15px); }
+}
+
+.rebond {
+    animation: rebond 1s ease-in-out;
+}
+
+/* Styles pour les infobulles */
+.infobulle {
+    position: relative;
+    display: inline-block;
+}
+
+.infobulle .texte-infobulle {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-texte);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.infobulle:hover .texte-infobulle {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Styles pour le chargement progressif */
+.chargement-progressif {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.chargement-progressif.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Styles pour le défilement parallaxe */
+.parallaxe {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Styles pour les effets de survol avancés */
+.effet-survol-avance {
+    position: relative;
+    overflow: hidden;
+}
+
+.effet-survol-avance::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+    );
+    transition: all 0.6s;
+}
+
+.effet-survol-avance:hover::before {
+    left: 100%;
+}
+
+/* Styles pour le mode sombre */
+.interrupteur-theme {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.bouton-theme {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-texte);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.bouton-theme:hover {
+    background-color: var(--couleur-tertiaire);
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .conteneur-admin {
+        flex-direction: column;
+    }
+
+    .barre-laterale {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .contenu-principal {
+        padding: 1rem;
+    }
+
+    .section-statistiques {
+        grid-template-columns: 1fr;
+    }
+
+    .table-gestion {
+        font-size: 0.9rem;
+    }
+
+    .bouton-action,
+    .bouton-retour,
+    .bouton-modifier,
+    .bouton-supprimer,
+    .bouton-ajouter,
+    .bouton-theme {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .element-film,
+    .element-horaire,
+    .element-client,
+    .element-actualite {
+        padding: 1rem;
+    }
+
+    .actions-film,
+    .actions-client,
+    .actions-actualite {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Effets de transition pour le changement de thème */
+body,
+.barre-laterale,
+.contenu-principal,
+.bouton-action,
+.bouton-retour,
+.bouton-modifier,
+.bouton-supprimer,
+.bouton-ajouter,
+.bouton-theme,
+input,
+textarea,
+select,
+.table-gestion,
+.element-film,
+.element-horaire,
+.element-client,
+.element-actualite,
+.carte-statistique {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
