@@ -1,0 +1,13 @@
+{
+    "name": "manueld/miage-cinema-universe",
+    "description": "Un projet de cinema modernisé.",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
