@@ -1,0 +1,24 @@
+node_modules
+.git
+*.log
+*.pptm
+sql/*.sql
+FROM php:8.2-apache
+
+# Installer les extensions nécessaires
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Copier le code source dans le conteneur
+COPY . /var/www/html/
+
+# Donner les droits à Apache
+RUN chown -R www-data:www-data /var/www/html
+
+# Activer mod_rewrite
+RUN a2enmod rewrite
+
+# Copier un fichier de configuration Apache personnalisé si besoin
+# COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+EXPOSE 80
+
